@@ -1,0 +1,46 @@
+CREATE DATABASE HealthLogger;
+USE HealthLogger;
+ 
+-- Doctor Authentication Table
+CREATE TABLE Doctor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(20) NOT NULL
+);
+ 
+select * from Doctor;
+
+CREATE TABLE Patient (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    phone VARCHAR(15),
+    age INT,
+    diagnosis varchar(50),
+    remark TEXT,
+    gender VARCHAR(10)
+);
+
+
+
+CREATE TABLE patients (
+    id INT auto_increment primary KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    phone VARCHAR(15),
+    age INT,
+    diagnosis varchar(50),
+    remark TEXT,
+    gender VARCHAR(10)
+);
+
+
+CREATE TABLE vitals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT NOT NULL,
+    bp_low INT NOT NULL,
+    bp_high INT NOT NULL,
+    spo2 INT NOT NULL,
+    recorded_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE
+);
